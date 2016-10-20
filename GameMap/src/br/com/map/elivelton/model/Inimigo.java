@@ -19,16 +19,18 @@ import javax.swing.ImageIcon;
  */
 public class Inimigo {
     private int x, y;
-    private int dx, dy;
     private Image imagem;
     private boolean isVisivel;
     private int altura;
     private int largura;
-    public static int cont;
+    public static int cont = 0;
     private List<Lazer> municao;
     private ImageIcon ref;
 
-    public Inimigo(int sx,int sy) {
+    public Inimigo(int x,int y) {
+        
+        this.x = x;
+        this.y = y;
         
         if(cont++ % 2 == 0){
             ref = new ImageIcon(AssetsUtil.INIMIGO_1);
@@ -41,23 +43,19 @@ public class Inimigo {
         }
         if(cont++ % 5 == 1){
             ref = new ImageIcon(AssetsUtil.INIMIGO_4);
-        }
-        if(cont++ % 6 == 2){
+        }else{
             ref = new ImageIcon(AssetsUtil.INIMIGO_5);
         }
         this.imagem = ref.getImage();
         this.altura = imagem.getHeight(null);
         this.largura = imagem.getWidth(null);
         municao = new ArrayList<Lazer>();
-        this.x = sx;
-        this.y = sy;
     }
 
     public void mover() {
+        this.y += MedidasUtil.VELOCIDADE;
         if(this.y > MedidasUtil.ALTURA){
-            this.y = 0;
-        }else{
-            this.y += MedidasUtil.VELOCIDADE;
+            isVisivel = false;
         }
     }
     
