@@ -35,14 +35,16 @@ public class Fase extends JPanel implements ActionListener {
     private Player nave;
     private boolean emJogo;
     private List<Inimigo> inimigos;
+    private String player;
 
-    public Fase() {
+    public Fase(String nome) {
         setFocusable(true);
         setDoubleBuffered(true);
         addKeyListener(new TecladoAdapter());
         ImageIcon ref = new ImageIcon(AssetsUtil.FASE1);
         fundo = ref.getImage();
         nave = new Player();
+        player = nome;
         inimigos = new ArrayList<Inimigo>();
         emJogo = true;
         timer = new Timer(5, this);
@@ -71,32 +73,51 @@ public class Fase extends JPanel implements ActionListener {
             graficos.drawImage(m.getImagem(), m.getX(), m.getY(), this);
         }
         graficos.setColor(Color.WHITE);
-        graficos.drawString("Inimigos: " + inimigos.size(), 20, 15);
+        graficos.drawString("Player: " + player, 20, 15);
+        graficos.drawString("Inimigos: " + inimigos.size(), 150, 15);
         g.dispose();
 
     }
-    /*
+
+    ///*
     private class GerarInimigos extends Thread {
 
         public void run() {
             while (emJogo) {
-                try{
-                inimigos.add(new Inimigo(1 + (int) (1000 * Math.random()), -80));
-                Thread.sleep(5000);
-                }catch(Exception e){
+                try {
+                    for (int i = 0; i < 12; i++) {
+                        inimigos.add(new Inimigo(1 + (int) (950 * Math.random()), 0));
+                        this.sleep(5000);
+                    }
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
 
         }
     }
-    */
+    //*/
+
+    /*
+    public void GerarInimigos() {
+
+        while (emJogo) {
+            try {
+                inimigos.add(new Inimigo(1 + (int) (950 * Math.random()), 0));
+                timer.wait(5000);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+     */
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
         List<Lazer> lazers = nave.getMunicao();
-            
+        new GerarInimigos().start();
+
         for (int i = 0; i < lazers.size(); i++) {
             //for(LazerPlayer l : lazers){
             Lazer l = (Lazer) lazers.get(i);
@@ -106,7 +127,7 @@ public class Fase extends JPanel implements ActionListener {
                 lazers.remove(l);
             }
         }
-        
+
         for (int i = 0; i < inimigos.size(); i++) {
             //for(LazerPlayer l : lazers){
             Inimigo g = (Inimigo) inimigos.get(i);
@@ -116,11 +137,13 @@ public class Fase extends JPanel implements ActionListener {
                 inimigos.remove(g);
             }
         }
-        
-        for(int i = 0; i < 12 ; i++){
-            inimigos.add(new Inimigo(1 + (int) (950 * Math.random()),0));
+        /*
+        for (int i = 0; i < 12; i++) {
+            inimigos.add(new Inimigo(1 + (int) (950 * Math.random()), 0));
+            this.wait(5000);
         }
-        
+         */
+
         nave.mover();
         checarColisoes();
         repaint();

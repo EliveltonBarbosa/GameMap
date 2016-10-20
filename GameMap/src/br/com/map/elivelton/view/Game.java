@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.map.elivelton.model;
+package br.com.map.elivelton.view;
 
+import br.com.map.elivelton.model.Fase;
 import br.com.map.elivelton.util.MedidasUtil;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -20,8 +21,8 @@ import javax.swing.Timer;
  */
 public class Game extends JFrame{
  
-    public Game(){
-        add(new Fase());
+    public Game(String nome){
+        add(new Fase(nome));
         setTitle("Galactic Warriors");
         setSize(MedidasUtil.LARGURA, MedidasUtil.ALTURA);
         setResizable(false);

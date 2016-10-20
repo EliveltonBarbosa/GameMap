@@ -5,7 +5,8 @@
  */
 package gamemap;
 
-import br.com.map.elivelton.model.Game;
+import br.com.map.elivelton.view.CadSessao;
+import br.com.map.elivelton.view.Game;
 
 /**
  *
@@ -17,7 +18,8 @@ public class GameMap {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Game game = new Game();
+        CadSessao sessao = new CadSessao();
+        sessao.setVisible(true);
     }
     
 }

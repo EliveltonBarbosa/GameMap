@@ -41,7 +41,7 @@ public class Inimigo {
         if(cont++ % 4 == 1){
             ref = new ImageIcon(AssetsUtil.INIMIGO_3);
         }
-        if(cont++ % 5 == 1){
+        if(cont++ % 5 == 2){
             ref = new ImageIcon(AssetsUtil.INIMIGO_4);
         }else{
             ref = new ImageIcon(AssetsUtil.INIMIGO_5);
