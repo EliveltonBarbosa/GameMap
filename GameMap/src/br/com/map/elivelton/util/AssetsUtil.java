@@ -19,4 +19,8 @@ public class AssetsUtil {
     public static final String INIMIGO_3 = "assets/player/alien3.png";
     public static final String INIMIGO_4 = "assets/player/alien4.png";
     public static final String INIMIGO_5 = "assets/player/alien5.png";
+    public static final String GAME_OVER = "assets/GameOver.png";
+    public static final String ICO_PLAY = "assets/icoPlay.png";
+    public static final String ICO_CANCEL = "assets/icoCancel.png";
+    public static final String ICO_LISTA = "assets/iconeListar.png";
 }

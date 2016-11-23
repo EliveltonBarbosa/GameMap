@@ -23,4 +23,6 @@ public interface ISessaoBusiness {
     
     public List<Sessao> getAll()  throws BusinessException;
     
+    public List<Sessao> getRanking() throws BusinessException;
+    
 }

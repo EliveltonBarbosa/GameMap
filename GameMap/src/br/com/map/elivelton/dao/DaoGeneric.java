@@ -22,15 +22,17 @@ import org.hibernate.criterion.Restrictions;
 public class DaoGeneric<T> implements IDaoGeneric<T> {
 
     private Class classe;
-    private EntityManager manager = PersistenceUtil.getEntityManager();
 
     public DaoGeneric() {
         this.classe = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+        
     }
 
     @Override
     public T save(T t) throws DaoException {
+        EntityManager manager = PersistenceUtil.getEntityManager();
         try {
+            
             manager.getTransaction().begin();
             manager.persist(t);
             manager.flush();
@@ -46,6 +48,7 @@ public class DaoGeneric<T> implements IDaoGeneric<T> {
 
     @Override
     public T update(T t) throws DaoException {
+        EntityManager manager = PersistenceUtil.getEntityManager();
         try {
             manager.getTransaction().begin();
             manager.merge(t);
@@ -62,6 +65,7 @@ public class DaoGeneric<T> implements IDaoGeneric<T> {
 
     @Override
     public T remove(T t) throws DaoException {
+        EntityManager manager = PersistenceUtil.getEntityManager();
         try {
             manager.getTransaction().begin();
             t = manager.merge(t);
@@ -105,7 +109,7 @@ public class DaoGeneric<T> implements IDaoGeneric<T> {
 
     @Override
     public Criteria getCriteria() {
-        manager = PersistenceUtil.getEntityManager();
+        EntityManager manager = PersistenceUtil.getEntityManager();
         Session session = ((Session) manager.getDelegate());
         return session.createCriteria(classe);
     }

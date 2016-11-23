@@ -86,19 +86,19 @@ public class Player {
             atira();
         }
         if (codigo == KeyEvent.VK_UP) {
-            dy = -2;
+            dy = -3;
         }
         if (codigo == KeyEvent.VK_DOWN) {
-            dy = 2;
+            dy = 3;
         }
         if (codigo == KeyEvent.VK_LEFT) {
-            dx = -2;
+            dx = -3;
             setPos(4);
             setPos(5);
             setPos(6);
         }
         if (codigo == KeyEvent.VK_RIGHT) {
-            dx = 2;
+            dx = 3;
             setPos(1);
             setPos(2);
             setPos(3);

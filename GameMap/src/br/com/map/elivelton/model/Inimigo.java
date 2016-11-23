@@ -18,6 +18,7 @@ import javax.swing.ImageIcon;
  * @author Elivelton
  */
 public class Inimigo {
+
     private int x, y;
     private Image imagem;
     private boolean isVisivel;
@@ -27,25 +28,24 @@ public class Inimigo {
     private List<Lazer> municao;
     private ImageIcon ref;
 
-    public Inimigo(int x,int y) {
-        
+    public Inimigo(int x, int y) {
+
+        if (cont++ % 5 == 2) {
+            ref = new ImageIcon(AssetsUtil.INIMIGO_4);
+        } else if (cont++ % 5 == 0) {
+            ref = new ImageIcon(AssetsUtil.INIMIGO_3);
+        } else if (cont++ % 4 == 2) {
+            ref = new ImageIcon(AssetsUtil.INIMIGO_2);
+        } else {
+            if (cont++ % 4 == 0) {
+                ref = new ImageIcon(AssetsUtil.INIMIGO_1);
+            }
+            else
+                ref = new ImageIcon(AssetsUtil.INIMIGO_5);
+        }
         this.x = x;
         this.y = y;
-        
-        if(cont++ % 2 == 0){
-            ref = new ImageIcon(AssetsUtil.INIMIGO_1);
-        }
-        if(cont++ % 3 == 0){
-            ref = new ImageIcon(AssetsUtil.INIMIGO_2);
-        }
-        if(cont++ % 4 == 1){
-            ref = new ImageIcon(AssetsUtil.INIMIGO_3);
-        }
-        if(cont++ % 5 == 2){
-            ref = new ImageIcon(AssetsUtil.INIMIGO_4);
-        }else{
-            ref = new ImageIcon(AssetsUtil.INIMIGO_5);
-        }
+        isVisivel = true;
         this.imagem = ref.getImage();
         this.altura = imagem.getHeight(null);
         this.largura = imagem.getWidth(null);
@@ -53,20 +53,20 @@ public class Inimigo {
     }
 
     public void mover() {
-        this.y += MedidasUtil.VELOCIDADE;
-        if(this.y > MedidasUtil.ALTURA){
+        this.y = y + 2;
+        if (this.y > MedidasUtil.ALTURA) {
             isVisivel = false;
         }
     }
-    
-    public void atira(){
-        this.municao.add(new Lazer((this.x +largura/2),this.y + altura));
+
+    public void atira() {
+        this.municao.add(new Lazer((this.x + largura / 2), this.y + altura));
     }
-    
-    public Rectangle getBounds(){
-        return new Rectangle(x,y,largura,altura);
+
+    public Rectangle getBounds() {
+        return new Rectangle(x, y, largura, altura);
     }
-    
+
     public int getX() {
         return x;
     }
@@ -82,6 +82,7 @@ public class Inimigo {
     public void setImagem(Image imagem) {
         this.imagem = imagem;
     }
+   
 
     public boolean isVisivel() {
         return isVisivel;
@@ -90,5 +91,5 @@ public class Inimigo {
     public void setVisivel(boolean isVisivel) {
         this.isVisivel = isVisivel;
     }
-    
+
 }

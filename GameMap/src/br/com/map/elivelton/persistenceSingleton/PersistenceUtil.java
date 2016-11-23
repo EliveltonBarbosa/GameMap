@@ -15,6 +15,7 @@ import javax.persistence.Persistence;
  * @author Elivelton
  */
 public class PersistenceUtil {
+
     private static final String PERSISTENCE_UNIT_NAME = "GameMapPU";
     private static EntityManagerFactory entityManagerFactory = null;
     private static EntityManager entityManager = null;
@@ -34,6 +35,7 @@ public class PersistenceUtil {
         try {
             if (entityManager == null || !entityManager.isOpen()) {
                 entityManager = entityManagerFactory.createEntityManager();
+                System.out.println(entityManager);
             }
             return entityManager;
         } catch (Exception e) {

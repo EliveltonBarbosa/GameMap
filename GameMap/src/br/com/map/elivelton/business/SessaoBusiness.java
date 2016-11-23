@@ -64,4 +64,14 @@ public class SessaoBusiness implements ISessaoBusiness{
         }
     }
     
+    @Override
+    public List<Sessao> getRanking() throws BusinessException {
+        try {
+            return daoSessao.getPorRanking();
+        } catch (DaoException ex) {
+            ex.printStackTrace();
+            throw new BusinessException(ex.getMessage());
+        }
+    }
+    
 }

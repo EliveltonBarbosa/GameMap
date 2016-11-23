@@ -5,24 +5,34 @@
  */
 package br.com.map.elivelton.model;
 
-import java.util.Calendar;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  *
  * @author Elivelton
  */
-public class Sessao {
-    private long id;
-    private String user;
-    private int pontos;
-    private Calendar data;
 
-    public Sessao(long id, String user, int pontos, Calendar data) {
-        this.id = id;
-        this.user = user;
-        this.pontos = pontos;
-        this.data = data;
+@Entity
+public class Sessao {
+
+    @Id
+    @GeneratedValue
+    private long id;
+    private String usuario;
+    private int pontos;
+
+    
+    public Sessao() {
+        
     }
+    
+    public Sessao(String usuario, int pontos) {
+        this.usuario = usuario;
+        this.pontos = pontos;
+    }
+
 
     public long getId() {
         return id;
@@ -33,11 +43,11 @@ public class Sessao {
     }
 
     public String getUser() {
-        return user;
+        return usuario;
     }
 
     public void setUser(String user) {
-        this.user = user;
+        this.usuario = user;
     }
 
     public int getPontos() {
@@ -46,14 +56,6 @@ public class Sessao {
 
     public void setPontos(int pontos) {
         this.pontos = pontos;
-    }
-
-    public Calendar getData() {
-        return data;
-    }
-
-    public void setData(Calendar data) {
-        this.data = data;
     }
     
 }

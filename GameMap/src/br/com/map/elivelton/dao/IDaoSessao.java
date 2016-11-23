@@ -16,6 +16,6 @@ import java.util.List;
  */
 public interface IDaoSessao extends IDaoGeneric<Sessao>{
     
-    public List<Sessao> getPorData(String data) throws DaoException;
+    public List<Sessao> getPorRanking() throws DaoException;
     
 }

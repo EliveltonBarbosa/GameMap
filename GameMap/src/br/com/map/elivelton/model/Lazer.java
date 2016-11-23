@@ -31,7 +31,7 @@ public class Lazer {
     }
     
     public void mover(){
-        this.y -= MedidasUtil.VELOCIDADE;
+        this.y -= 5;
         if(this.y > MedidasUtil.ALTURA){
             visivel = false;
         }

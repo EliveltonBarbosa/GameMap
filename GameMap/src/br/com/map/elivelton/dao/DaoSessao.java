@@ -10,6 +10,7 @@ import br.com.map.elivelton.model.Sessao;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -19,11 +20,11 @@ import org.hibernate.criterion.Restrictions;
 public class DaoSessao extends DaoGeneric<Sessao> implements IDaoSessao{
 
     @Override
-    public List<Sessao> getPorData(String data) throws DaoException {
+    public List<Sessao> getPorRanking() throws DaoException {
         List<Sessao> sessoes = null;
         try {
             Criteria criteria = getCriteria(); 
-            criteria.add(Restrictions.ilike("data", data, MatchMode.ANYWHERE)); 
+            criteria.addOrder(Order.desc("pontos"));
             sessoes = (List<Sessao>) criteria.list();
             return sessoes;
         } catch (Exception e) {
